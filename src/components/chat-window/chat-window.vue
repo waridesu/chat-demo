@@ -15,14 +15,8 @@ const data = () => {
   };
 }
 
-const handleFileUpload = () => {
-  const file = this.$refs.fileInput.files[0];
-
-  if (file) {
-    this.uploadedFile = file;
-    const acceptedImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
-    this.isImage = acceptedImageTypes.includes(file.type);
-  }
+const handleFileUploaded = (fileData) => {
+  console.log(fileData);
 }
 
 const addMessage = (message) => {
@@ -44,9 +38,7 @@ const addMessage = (message) => {
           :time="message.time"
           :sender="message.sender"/>
     </div>
-    <InputArea @send="addMessage"/>
-    <input type="file" ref="fileInput" @change="handleFileUpload"/>
-
+    <InputArea @send="addMessage" @file-uploaded="handleFileUploaded"/>
   </div>
 </template>
 
